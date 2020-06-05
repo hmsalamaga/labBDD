@@ -21,6 +21,9 @@ public class LineIsImmutableTest {
         sampleLine = Line.named("favouriteLine").departingFrom("station 0").withStations(inputStations);
     }
 
+    //dont work
+    //Expected: is <[station 1, station 2, station 3]>
+    //but: was <[station 99, station 2, station 3]>
     @Test
     public void stationsCanNotBeModifiedAfterLineCreation() throws Exception {
         inputStations[0] = "station 99";
