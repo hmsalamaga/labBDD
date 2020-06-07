@@ -9,10 +9,15 @@ import java.util.List;
 public class ItineraryServiceClass implements ItineraryService {
 
     private TimetableService timetableService;
-    private final int MINUTES = 15;
+    private int minutes = 15;
 
     public ItineraryServiceClass(TimetableService timetableService) {
         this.timetableService = timetableService;
+    }
+
+    public ItineraryServiceClass(TimetableService timetableService, int minutes) {
+        this.timetableService = timetableService;
+        this.minutes = minutes;
     }
 
     @Override public List<LocalTime> findNextDepartures(String departure, String destination, LocalTime time) {
@@ -27,7 +32,7 @@ public class ItineraryServiceClass implements ItineraryService {
                 // jesli odjazd jest pozniej niz godzina o ktorej chce podrozowac
                 if(localTime.isAfter(time)){
                     //jesli odjazd jest w ciagu 15 minut
-                    if(localTime.minusMinutes(MINUTES).isBefore(time)){
+                    if(localTime.minusMinutes(minutes).isBefore(time)){
                         results.add(localTime); //dodaj odjazd do zbioru szukanych odjazdow
                     }
                 }

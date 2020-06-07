@@ -26,7 +26,7 @@ public class OptimalItinerarySteps {
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
         timetableService = new InMemoryTimetableService();
-        itineraryService = new ItineraryServiceClass(timetableService);
+        itineraryService = new ItineraryServiceClass(timetableService,30);
     }
 
     @Gdy("^chcę podróżować z \"([^\"]*)\" do \"([^\"]*)\" o (.*)$")
