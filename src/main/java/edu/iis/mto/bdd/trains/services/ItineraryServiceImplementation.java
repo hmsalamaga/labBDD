@@ -8,10 +8,16 @@ import java.util.List;
 
 public class ItineraryServiceImplementation implements ItineraryService {
     private TimetableService timetableService;
-    private final int MINUTES_TO_NEXT_DEPARTURE = 15;
+    private int minutedToNextDeparture;
 
     public ItineraryServiceImplementation(TimetableService timetableService) {
         this.timetableService = timetableService;
+        this.minutedToNextDeparture = 30;
+    }
+
+    public ItineraryServiceImplementation(TimetableService timetableService, int minutedToNextDeparture) {
+        this.timetableService = timetableService;
+        this.minutedToNextDeparture = minutedToNextDeparture;
     }
 
     @Override
@@ -24,7 +30,7 @@ public class ItineraryServiceImplementation implements ItineraryService {
             tempDepartures = timetableService.findArrivalTimes(line, departure);
 
             for (LocalTime localTime : tempDepartures) {
-                if (localTime.isAfter(time) && localTime.minusMinutes(MINUTES_TO_NEXT_DEPARTURE).isBefore(time)) {
+                if (localTime.isAfter(time) && localTime.minusMinutes(minutedToNextDeparture).isBefore(time)) {
                     nextDepartures.add(localTime);
                 }
             }
