@@ -69,11 +69,8 @@ public class WhenCalculatingArrivalTimes {
 
         List<LocalTime> expectedDepartureTimes = List.of(
                 jodaLocalTimeConverter.transform("8:01"),
-                jodaLocalTimeConverter.transform("9:01"),
-                jodaLocalTimeConverter.transform("10:01"),
                 jodaLocalTimeConverter.transform("8:02"),
-                jodaLocalTimeConverter.transform("8:03"),
-                jodaLocalTimeConverter.transform("9:03")
+                jodaLocalTimeConverter.transform("8:03")
         );
 
         List<LocalTime> resultDeparturesTimes = itineraryService.findNextDepartures(origin, destination, travelStartTime);

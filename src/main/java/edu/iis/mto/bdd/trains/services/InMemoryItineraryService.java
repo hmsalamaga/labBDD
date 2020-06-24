@@ -1,15 +1,11 @@
 package edu.iis.mto.bdd.trains.services;
 
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Range;
 import edu.iis.mto.bdd.trains.model.Line;
 import org.joda.time.LocalTime;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class InMemoryItineraryService implements ItineraryService {
 
@@ -26,9 +22,6 @@ public class InMemoryItineraryService implements ItineraryService {
         for (Line line : foundLines) {
             arrivalTimes.addAll(timetableService.findArrivalTimes(line, origin));
         }
-        List<LocalTime> filteredArrivalTimes = Lists.newArrayList();
-        Iterables.filter(arrivalTimes, Range.greaterThan(time)).forEach(filteredArrivalTimes::add);
-
-        return filteredArrivalTimes;
+        return arrivalTimes.stream().filter(localTime -> localTime.isAfter(time) && localTime.isBefore(time.plusMinutes(MAX_TRAVEL_TIME))).collect(Collectors.toList());
     }
 }
