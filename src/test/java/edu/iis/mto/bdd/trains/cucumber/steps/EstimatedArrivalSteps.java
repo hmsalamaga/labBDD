@@ -8,7 +8,7 @@ import cucumber.api.java.pl.Wtedy;
 import cucumber.api.java.pl.Zakładając;
 import org.joda.time.LocalTime;
 
-public class EstimatedArrival {
+public class EstimatedArrivalSteps {
 
     @Zakładając("^chcę się dostać z \"([^\"]*)\" do \"([^\"]*)\"$")
     public void givenOriginAndDestination(String origin, String destination) {
