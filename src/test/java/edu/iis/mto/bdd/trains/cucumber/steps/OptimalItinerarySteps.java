@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.iis.mto.bdd.trains.services.InMemoryTimetableService;
 import edu.iis.mto.bdd.trains.services.ItineraryService;
+import edu.iis.mto.bdd.trains.services.ItineraryServiceImplementation;
 import edu.iis.mto.bdd.trains.services.TimetableService;
 import org.joda.time.LocalTime;
 
@@ -23,13 +24,13 @@ public class OptimalItinerarySteps {
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
                                     @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
         timetableService = new InMemoryTimetableService();
-        itineraryService = new ItineraryService(timetableService);
+        itineraryService = new ItineraryServiceImplementation(timetableService);
     }
 
     @Gdy("^chcę podróżować z \"([^\"]*)\" do \"([^\"]*)\" o (.*)$")
     public void whenIWantToTravel(String departure, String destination,
                                   @Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
-        returnedTimes = itineraryService.findNextDepartures(departure,destination,startTime);
+        returnedTimes = itineraryService.findNextDepartures(departure, destination, startTime);
     }
 
     @Wtedy("^powinienem uzyskać informację o pociągach o:$")
