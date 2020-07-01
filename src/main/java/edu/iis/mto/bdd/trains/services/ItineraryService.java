@@ -6,11 +6,11 @@ import org.joda.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IntineraryService {
+public class ItineraryService {
 
     private TimetableService timetableService;
 
-    public IntineraryService(TimetableService timetableService) {
+    public ItineraryService(TimetableService timetableService) {
         this.timetableService = timetableService;
     }
 
