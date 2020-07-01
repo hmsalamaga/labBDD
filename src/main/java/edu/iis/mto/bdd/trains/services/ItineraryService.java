@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ItineraryService {
     TimetableService timetableService;
+    int TIME_TO_NEXT_TRAIN = 30;
+
 
     public ItineraryService(TimetableService timetableService) {
         this.timetableService = timetableService;
@@ -23,7 +25,9 @@ public class ItineraryService {
 
             for (LocalTime localTime : temp) {
                 if (startTime.isBefore(localTime)) {
-                    result.add(localTime);
+                    if(localTime.minusMinutes(TIME_TO_NEXT_TRAIN).isBefore(startTime)) {
+                        result.add(localTime);
+                    }
                 }
             }
         }
