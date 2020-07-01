@@ -52,7 +52,7 @@ public class WhenCalculatingArrivalTimes {
 
     @Test
     public void shouldReturnThreeGivenDepartureTimes() {
-        startingTimes = tranformTimesStrings(new String[]{"8:01", "8:03", "8:34", "8:45"});
+        startingTimes = tranformTimesStrings(new String[]{"8:01", "8:03", "8:04", "8:05"});
         expectedReturnedTimes.addAll(startingTimes);
         expectedReturnedTimes.remove(0);
         startTime = jodaLocalTimeConverter.transform("8:02");

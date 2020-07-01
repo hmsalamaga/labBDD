@@ -24,7 +24,9 @@ public class ItineraryServiceImplementation implements ItineraryService {
             arrivaltimes = timetableService.findArrivalTimes(line, to);
             for (LocalTime localTime : arrivaltimes) {
                 if (localTime.isAfter(time)) {
-                    result.add(localTime);
+                    if(!localTime.isAfter(time.plusMinutes(MAX_TIME))) {
+                        result.add(localTime);
+                    }
                 }
             }
 
