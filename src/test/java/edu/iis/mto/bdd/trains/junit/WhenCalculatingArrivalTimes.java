@@ -45,7 +45,7 @@ public class WhenCalculatingArrivalTimes {
         startingTimes = tranformTimesStrings(new String[]{"8:01", "8:02", "8:03", "8:04"});
         expectedReturnedTimes = startingTimes;
         startTime = jodaLocalTimeConverter.transform("8:00");
-        Mockito.when(timetableService.findArrivalTimes(line, to)).thenReturn(startingTimes);
+        Mockito.when(timetableService.findArrivalTimes(line, from)).thenReturn(startingTimes);
         List<LocalTime> returnedByTesting = itineraryService.findNextDepartures(from, to, startTime);
         assertEquals(expectedReturnedTimes, returnedByTesting);
     }
@@ -56,7 +56,7 @@ public class WhenCalculatingArrivalTimes {
         expectedReturnedTimes.addAll(startingTimes);
         expectedReturnedTimes.remove(0);
         startTime = jodaLocalTimeConverter.transform("8:02");
-        Mockito.when(timetableService.findArrivalTimes(line, to)).thenReturn(startingTimes);
+        Mockito.when(timetableService.findArrivalTimes(line, from)).thenReturn(startingTimes);
         List<LocalTime> returnedByTesting = itineraryService.findNextDepartures(from, to, startTime);
         assertEquals(expectedReturnedTimes, returnedByTesting);
     }
@@ -65,7 +65,7 @@ public class WhenCalculatingArrivalTimes {
     public void shouldReturnEmptyList() {
         startingTimes = tranformTimesStrings(new String[]{"8:01", "8:02", "8:03", "8:04"});
         startTime = jodaLocalTimeConverter.transform("8:05");
-        Mockito.when(timetableService.findArrivalTimes(line, to)).thenReturn(startingTimes);
+        Mockito.when(timetableService.findArrivalTimes(line, from)).thenReturn(startingTimes);
         List<LocalTime> returnedByTesting = itineraryService.findNextDepartures(from, to, startTime);
         assertEquals(0, returnedByTesting.size());
     }

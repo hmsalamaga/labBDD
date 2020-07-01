@@ -21,10 +21,10 @@ public class ItineraryServiceImplementation implements ItineraryService {
         List<LocalTime> result = new ArrayList<>();
         List<LocalTime> arrivaltimes;
         for (Line line : linesThrough) {
-            arrivaltimes = timetableService.findArrivalTimes(line, to);
+            arrivaltimes = timetableService.findArrivalTimes(line, from);
             for (LocalTime localTime : arrivaltimes) {
                 if (localTime.isAfter(time)) {
-                    if(!localTime.isAfter(time.plusMinutes(MAX_TIME))) {
+                    if(localTime.isBefore(time.plusMinutes(MAX_TIME))) {
                         result.add(localTime);
                     }
                 }
