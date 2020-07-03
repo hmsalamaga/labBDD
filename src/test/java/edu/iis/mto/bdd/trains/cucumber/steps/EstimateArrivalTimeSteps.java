@@ -1,7 +1,5 @@
 package edu.iis.mto.bdd.trains.cucumber.steps;
 
-import java.util.List;
-
 import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.pl.I;
@@ -10,7 +8,7 @@ import cucumber.api.java.pl.Wtedy;
 import cucumber.api.java.pl.Zakładając;
 import org.joda.time.LocalTime;
 
-public class EstimateArrivalTime {
+public class EstimateArrivalTimeSteps {
 
     @Zakładając("^chcę dostać się z (.*) do (.*)$")
     public void chcęDostaćSięZFromDoTo(String from, String to) {
